@@ -46,7 +46,7 @@ def initdriver():
     #options2.headless = True
 
 
-    proxy = "megaproxy.rotating.proxyrack.net:222"
+    proxy = "proxyhere"
 
     firefox_capabilities = webdriver.DesiredCapabilities.FIREFOX
     firefox_capabilities['marionette'] = True
@@ -64,9 +64,9 @@ def initdriver():
 
 def setreferer(request):
     del request.headers['Referer']
-    #sources = ['https://google.com','https://instagram.com','https://facebook.com','https://yahoo.ca','https://bing.com','duckduckgo.com'] 
+    sources = ['https://google.com','https://instagram.com','https://facebook.com','https://yahoo.ca','https://bing.com','duckduckgo.com'] 
     
-    request.headers['Referer'] = "https://news-network.press"
+    request.headers['Referer'] = sources[random.randint(0,int(len(sources)-1))]
     
 
 def go():
@@ -87,9 +87,7 @@ def go():
                 except Exception as EEeee:
                     print("Error: "+str(EEeee))
 
-            #element.click()
-            #time.sleep(2)
-            #url = str("http://p.npcad.com/go/332035/632934/aHR0cHMlM0EvL25ld3MtbmV0d29y"+str(random.randint(11111,99999))+"mVzcy9pZnJhbWUucGhw?cb=8795199300789259")
+            
             for _ in range(10):
                 try:
                     driver.get(websiteglobal)
@@ -111,20 +109,7 @@ def go():
                 driver.quit()
             except:
                 print("Error closing driver")
-            #print("URL: "+str(url))
-            #proxy  = {"http" : "http://bobiscool113:e9e113-251591-1dc380-248832-0e39c5@megaproxy.rotating.proxyrack.net:222",
-             # "https" : "http://bobiscool113:e9e113-251591-1dc380-248832-0e39c5@megaproxy.rotating.proxyrack.net:222"}
-            #headers = {
-            #'Host':'p.npcad.com',
-            #'User-Agent':useragent,
-            #'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            #'Accept-Language':'en-US,en;q=0.5',
-            #'Accept-Encoding':'gzip, deflate',
-            #'Connection':'keep-alive',
-            #'Upgrade-Insecure-Requests':'1'
-            #}
-            #response = requests.get(str(websiteglobal), headers=headers,proxies=proxy)
-            #print(response.text)
+            
         except Exception as EEeer:
             print("Tried to click failed: "+str(EEeer))
             try:
@@ -155,8 +140,8 @@ def startthreads(threadnum):
     #proxies = file.readlines()
     #file.close()
 
-    #thread = threading.Thread(target=updatethread)
-    #thread.start()
+    thread = threading.Thread(target=updatethread)
+    thread.start()
     
     for i in range(threadnum):
         Thread = threading.Thread(target=go)    
@@ -173,7 +158,7 @@ WELCOME TO TRAFFICBOT V.1
 drive super lightweight bot traffic to any website with high quality proxies
 -
 """)
-websiteglobal = "https://news-network.press/iframe.php"
+websiteglobal = "https://yourwebsitehere.com"
 threadstodo = int(input("Threads: "))
 
 startthreads(threadstodo)
